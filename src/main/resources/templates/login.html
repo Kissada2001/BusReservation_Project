@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Bus Reservation System</title>
+
+																																							<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+.navbar {
+	background-color: white;
+}
+
+img {
+	width: 550px;
+	margin-left:32%;
+	margin-bottom:-120px;
+	margin-top:-20px;
+}
+
+.container {
+	width: 100%;
+}
+</style>
+
+<body>
+
+	<!-- create navigation bar ( header) -->
+	
+	<img src="https://scontent.fkkc3-1.fna.fbcdn.net/v/t39.30808-6/326590404_478293780969528_3256643819161847576_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_eui2=AeGLIREzfyFySiC0V0kOv_chpIACNLZ4GA6kgAI0tngYDmJgTAm92VPxLMQzsv3xY_wmVAmJ-t1PH0-RFG3XjdWR&_nc_ohc=JNjJJi8LoOoAX-0ZP0g&tn=RUHv2X4nGmec_eCF&_nc_ht=scontent.fkkc3-1.fna&oh=00_AfA3XmZGAmLrJUFAMkWOIHgancgRd9dxXsGLgZ6VyNbtLg&oe=63D3231B" alt="logo" >
+	<div class="container ">
+	
+
+		<div class="row justify-content-md-center">
+			<div class="col-md-6 col-md-offset-3 ">
+
+				<div th:if="${param.error}">
+					<div class="alert alert-info">อีเมลหรือรหัสผ่านที่ป้อนไม่ถูกต้อง โปรดตรวจสอบและเข้าสู่ระบบอีกครั้ง!!!</div>
+				</div>
+
+				<h1>Login</h1>
+
+				<form th:action="@{/login}" method="post" th:object="${user}">
+
+
+
+					<div class="form-group">
+						<label class="control-label" for="email">อีเมล</label> <input
+							id="email" class="form-control" th:field="*{username}" required
+							autofocus="autofocus" />
+					</div>
+
+
+
+					<div class="form-group">
+						<label class="control-label" for="password"> รหัสผ่าน </label> <input
+							id="password" class="form-control mb-3" type="password"
+							th:field="*{password}" required autofocus="autofocus" />
+					</div>
+
+					<div class="form-group">
+						<button type="submit" class="btn btn-primary">เข้าสู่ระบบ</button>
+						<span>สร้างสมาชิกผู้ใช้ใช่ใหม่? <a href="/" th:href="@{/registration}">*สร้างสมาชิกผู้ใช้ตรงนี้*</a></span>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+</body>
+</html>

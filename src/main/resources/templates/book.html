@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Bus Reservation System</title>
+																																			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+<style>
+.navbar {
+	background-color: #d9edf7;
+}
+
+input, label {
+	display: block;
+}
+</style>
+
+<body>
+
+	<!-- create navigation bar ( header) -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<h2>Booking Page</h2>
+
+				<div class="container">
+					<div>
+						<h4>
+							สวัสดี, คุณ <span th:text="*{userDetails}"></span>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+	</nav>
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Create HTML registration form -->
+	<div class="container">
+		<div class="row">
+
+
+			<!-- success message -->
+			<div th:if="${param.success}">
+				<div class="alert alert-info">การจองของคุณเสร็จสิ้น
+					เพื่อตรวจสอบการจองของคุณ โดยกดไปที่ตารางการจอง.</div>
+			</div>
+
+			
+
+			<form th:action="@{/dashboard/booking}" method="post"
+				th:object="${record}">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="from"> ต้นทาง </label> <input
+									id="from" class="form-control" th:field="*{fromDestination}"
+									required readonly="readonly" autofocus="autofocus" />
+							</div>
+						</div>
+
+						<div class="col-md-6">
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="to"> ปลายทาง </label> <input
+									id="to" class="form-control" th:field="*{toDestination}"
+									required readonly="readonly" autofocus="autofocus" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<label class="control-label" for="filterDate">วันที่ </label><input
+									type="date" th:field="*{filterDate}" id="filterDate" required
+									readonly="readonly" autofocus="autofocus" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="price"> ราคา </label> <input
+									id="price" class="form-control" th:field="*{price}" required
+									readonly="readonly" autofocus="autofocus" />
+							</div>
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="noOfPersons"> จำนวนคน
+								</label> <input id="noOfPersons" class="form-control"
+									th:field="*{noOfPersons}" required autofocus="autofocus"
+									onchange="updateFiled();" />
+							</div>
+						</div>
+						<div class="col-md-6">
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="totalCalculated">
+									จำนวนเงินที่ต้องชำระ </label> <input id="totalCalculated"
+									class="form-control" th:field="*{totalCalculated}" required
+									readonly="readonly" autofocus="autofocus" />
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="busName"> ชื่อรถบัส </label> <input
+									id="busName" class="form-control" th:field="*{busName}"
+									required readonly="readonly" autofocus="autofocus" />
+							</div>
+						</div>
+
+
+
+						<div class="col-md-6">
+
+							<div class="form-group" style="width: 31%;">
+								<label class="control-label" for="time"> เวลาออกเดินทาง
+								</label> <input id="time" class="form-control" th:field="*{time}"
+									required readonly="readonly" autofocus="autofocus" />
+							</div>
+
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-6">
+							<div class="form-group">
+								<button type="submit" class="btn btn-primary"
+									style="margin-top: 25px;">บันทึก</button>
+
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="form-group">
+					<span>ไปที่ ตารางการจอง <a href="/" th:href="@{/dashboard}">ตารางการจอง
+					</a></span>
+				</div>
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript">
+		function updateFiled() {
+
+			var price = document.getElementById("price").value;
+			var totalpassenger = document.getElementById("noOfPersons").value;
+			var totalValue = price * totalpassenger;
+
+			document.getElementById("totalCalculated").value = totalValue;
+
+		}
+	</script>
+</body>
+</html>
